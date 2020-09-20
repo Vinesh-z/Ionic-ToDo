@@ -1,3 +1,3 @@
 # Ionic-ToDo
-npm i
-ionic serve
+->npm i
+->ionic serve
