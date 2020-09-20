@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar color="dark">
+        <ion-title>
+            All Tasks
+        </ion-title>
+        <ion-button slot="end" (click)='addTask()' color="success" class="md button button-clear">
+            <ion-icon size="large" name="add-circle-outline"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item *ngIf="!reorderGroup.disabled">
+        <ion-label>
+            Delete All
+        </ion-label>
+        <ion-icon (click)="deleteAll()" slot="end" *ngIf="!reorderGroup.disabled" name="trash" color="danger"></ion-icon>
+    </ion-item>
+    <ion-list>
+        <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="true">
+            <div *ngFor="let task of tasks; let i= index;">
+                <ion-item lines="full" [ngClass]="{ 'pending' : task.status === 'pending','finished' : task.status === 'finished' }">
+                    <ion-label slot="start">
+                        {{i+1}}. {{task.name}}
+                    </ion-label>
+                    <ion-label class="date" *ngIf="reorderGroup.disabled">
+                        {{task.date}}
+                    </ion-label>
+                    <ion-icon (click)="changeStatus(i)" slot="end" *ngIf="!reorderGroup.disabled && task.status==='finished'" name="time" color="warning"></ion-icon>
+                    <ion-icon (click)="changeStatus(i)" slot="end" *ngIf="!reorderGroup.disabled && task.status==='pending'" name="done-all" color="success"></ion-icon>
+                    <ion-icon (click)="deleteTask(i)" slot="end" *ngIf="!reorderGroup.disabled" name="trash" color="danger"></ion-icon>
+                    <ion-reorder slot="end"></ion-reorder>
+                </ion-item>
+            </div>
+        </ion-reorder-group>
+    </ion-list>
+
+    <ion-fab *ngIf="reorderGroup.disabled" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="toggleReorderGroup()" color="tertiary">
+            <ion-icon name="create"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+    <ion-fab *ngIf="!reorderGroup.disabled" vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="toggleReorderGroup()" color="success">
+            <ion-icon name="checkmark"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>
