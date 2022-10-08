@@ -1,0 +1,20 @@
+{
+    "android": {
+      "debug": {
+        "keystore": "./vinesh.keystore",
+        "storePassword": "BlackClover@123",
+        "alias": "alias_name",
+        "password": "BlackClover@123",
+        "keystoreType": "",
+        "packageType": "apk"
+      },
+      "release": {
+        "keystore": "./vinesh.keystore",
+        "storePassword": "BlackClover@123",
+        "alias": "alias_name",
+        "password": "BlackClover@123",
+        "keystoreType": "",
+        "packageType": "bundle"
+      }
+    }
+  }

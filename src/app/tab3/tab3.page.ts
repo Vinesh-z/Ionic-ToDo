@@ -8,9 +8,14 @@ import { Storage } from '@ionic/storage';
 })
 export class Tab3Page implements OnInit {
   tasks = new Array<Task>();
+  loaded = false;
   constructor(private storage: Storage) { }
 
   ngOnInit() {
+    this.getTasks();
+  }
+
+  ionViewWillEnter() {
     this.getTasks();
   }
 
@@ -20,8 +25,8 @@ export class Tab3Page implements OnInit {
         this.tasks = new Array();
       } else {
         this.tasks = tasks.filter(task => task.status === 'finished');
-        console.log(this.tasks);
       }
+      this.loaded = true;
     });
   }
 }

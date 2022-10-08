@@ -38,6 +38,16 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'tab4',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../nivi/nivi.module').then(m => m.NiviPageModule)
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'

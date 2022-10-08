@@ -3,15 +3,15 @@
         <ion-title>
             Pending Tasks
         </ion-title>
-        <ion-button slot="end" (click)='addTask()' color="success" class="md button button-clear">
+        <!-- <ion-button slot="end" (click)='addTask()' color="success" class="md button button-clear">
             <ion-icon size="large" name="add-circle-outline"></ion-icon>
-        </ion-button>
+        </ion-button> -->
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-list>
-        <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="true">
+    <ion-list *ngIf="loaded">
+        <ion-reorder-group disabled="true">
             <div *ngFor="let task of tasks; let i= index;">
                 <ion-item lines="full" [ngClass]="{ 'pending' : task.status === 'pending','finished' : task.status === 'finished' }">
                     <ion-label slot="start">
